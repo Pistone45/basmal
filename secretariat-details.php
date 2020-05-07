@@ -1,7 +1,13 @@
 <?php
 include_once("functions/functions.php");
-    $getSecretariat = new Secretariat();
-    $secretariats = $getSecretariat->getSecretariat();
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $getSpecificSecretariat = new Secretariat();
+    $secretariats = $getSpecificSecretariat->getSpecificSecretariat($id);
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,25 +44,12 @@ include_once("functions/functions.php");
 
 
     <!-- about us start-->
-    <section class=" " style="padding-top:50px;">
+    <section class=" " style="padding-top:20px;">
         <div class="container fluid">
             <div class="row">
                 <div class="col-md-12 col-lg-12" style="padding-top:20px;">
-                    <div class="about_part_text text-justify">
-                        <h3>Brief Background</h3>
-                        <p>Basketball Association of Malawi is the only body mandated to run run basketball in Malawi. Basmal is affiiated to FIBA. 
-						The Southern Zone Basketball League, The Central Zone Basketball League and the Nothern Zone Basketball League are all affiiated to Basmal.</p>
-                        <br>
-                        <div class="row container">
-                            <div class="col-md-6">
-                                <h3><i class="fas fa-hands-helping"></i> Vision</h3>
-                                <p>Our Vision bla bl bla bblanhjs  </p>
-                            </div>
-                            <div class="col-md-6">
-                                <h3><i class="fas fa-bullseye"></i> Mission</h3>
-                                <p>Our Vision bla bl bla bblanhjs</p>
-                            </div>
-                        </div>
+                    <div class="">
+                        <h3 align="center">BIOGRAPHY</h3>
                     </div>
                 </div>
             </div>
@@ -64,34 +57,25 @@ include_once("functions/functions.php");
     </section>
 <br><br>
 <div class="row container-fluid">
-    <?php
-        if(isset($secretariats) && count($secretariats)>0){
-        foreach($secretariats as $secretariat){ ?>
-    <div class="col-md-6">
+    <div class="col-md-12">
     <div class="card border-secondary">
       <div class="card-body text-secondary">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="<?php echo $secretariat['image_url']?>" alt="" class="img-fluid">
+                        <img src="<?php echo $secretariats['image_url']?>" alt="" class="img-fluid">
                         <hr>
-                        <h4><?php echo $secretariat['fullname']?></h4>
+                        <h4><?php echo $secretariats['fullname']?></h4>
                     </div>
                     <div class="col-md-8">
-                        <h4><?php echo $secretariat['position']?></h4>
-                        <p><?php echo substr($secretariat['description'],0, 200)?>.......</p>
                         <br>
-                        <a href="secretariat-details?id=<?php echo $secretariat['id']?>"><button class="btn btn-info">View Profile</button></a>
+                        <h4><?php echo $secretariats['position']?></h4>
+                        <p><?php echo $secretariats['description'];?></p>
                     </div>
                 </div>
       </div>
       </div>
       <br>
     </div>
-            <?php
-            
-            }
-        }
-    ?>
 
 
 </div>

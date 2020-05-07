@@ -9,12 +9,12 @@ if(isset($_POST['submit'])){
 	
 		//validate ID attachment
 	//validate  file
-	 if(isset($_FILES['news_image'])){
+	 if(isset($_FILES['secretariat_image'])){
       $errors= array();
-      $file_name = $_FILES['news_image']['name'];
-      $file_size =$_FILES['news_image']['size'];
-      $file_tmp =$_FILES['news_image']['tmp_name'];
-      $file_type=$_FILES['news_image']['type'];
+      $file_name = $_FILES['secretariat_image']['name'];
+      $file_size =$_FILES['secretariat_image']['size'];
+      $file_tmp =$_FILES['secretariat_image']['tmp_name'];
+      $file_type=$_FILES['secretariat_image']['type'];
 	  $dot = ".";
 
      // $file_ext=strtolower(end(explode($dot,$file_name)));
@@ -43,14 +43,16 @@ if(isset($_POST['submit'])){
          //print_r($errors);
       }
 	   
-	  $news_image = $imagePath;
+	  $secretariat_image = $imagePath;
 	 // echo $image_Path; die();
 	 }
 
-	  $title = $_POST['title'];
-	  $content = trim($_POST['content']); 
-	 $newBanner = new News();
-	 $newBanner->addNews($title,$content,$news_image);
+	  $fullname = $_POST['fullname'];
+    $position = $_POST['position'];
+	  $description = trim($_POST['description']);
+
+	 $newSecretariat = new Secretariat();
+	 $newSecretariat->addSecretariat($fullname,$position, $description, $secretariat_image);
 	
 
 	
@@ -62,7 +64,7 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Add News | Basmal</title>
+  <title>Add Secretariat | Basmal</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -99,12 +101,12 @@ if(isset($_POST['submit'])){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Add News
+        Add Secretariat
        
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="add-news.php">Add News</a></li>
+        <li class="active"><a href="#">Add Secretariat</a></li>
        
       </ol>
     </section>
@@ -112,16 +114,16 @@ if(isset($_POST['submit'])){
     <!-- Main content -->
     <section class="content">
 	<!-- form start -->
-            <form role="form" action="add-news.php" method="POST" enctype="multipart/form-data">
+            <form role="form" action="add-secretariat.php" method="POST" enctype="multipart/form-data">
 			<?php
-                            if(isset($_SESSION["news-added"]) && $_SESSION["news-added"]==true)
+                            if(isset($_SESSION["secretariat-added"]) && $_SESSION["secretariat-added"]==true)
                             {
                                 echo "<div class='alert alert-success'>";
                                 echo "<button type='button' class='close' data-dismiss='alert'>*</button>";
-                                echo "<strong>Success! </strong>"; echo "You have successfully added news";
-                                unset($_SESSION["news-added"]);
+                                echo "<strong>Success! </strong>"; echo "You have successfully added a Secretariat";
+                                unset($_SESSION["secretariat-added"]);
                                 echo "</div>";
-								 header('Refresh: 5; URL= view-news.php');
+								 header('Refresh: 5; URL= view-secretariat.php');
                             }
 							?>
       <div class="row box box-primary">
@@ -130,18 +132,23 @@ if(isset($_POST['submit'])){
           <!-- general form elements -->
               <div class="box-body">
                 <div class="form-group">
-                  <label for="fatherName">Title</label>
-                  <input class="form-control" name="title" required>
+                  <label for="fatherName">Full Name</label>
+                  <input class="form-control" name="fullname" required>
                 </div>
 				
-				<div class="form-group">
-                  <label for="fatherMiddleName">News Image</label>
-                  <input type="file" class="" name="news_image" required>
+				        <div class="form-group">
+                  <label for="fatherMiddleName">Secretariat Image</label>
+                  <input type="file" class="" name="secretariat_image">
+                </div>
+
+                <div class="form-group">
+                  <label for="fatherName">Position</label>
+                  <input class="form-control" name="position" required>
                 </div>
 				
-				<div class="form-group">
-                  <label for="fatherLastname">News Content</label>
-                  <textarea class="form-control" name="content"  required>                       
+				      <div class="form-group">
+                  <label for="fatherLastname">Description</label>
+                  <textarea class="form-control" name="description"  required>                       
                         </textarea>
                 </div>
 				

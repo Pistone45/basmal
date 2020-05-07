@@ -1771,4 +1771,82 @@ class News{
 }
 
 
+
+class Secretariat{
+	private $dbCon;
+
+//private $username;
+
+	public function __construct(){
+
+		try{
+
+		$this->dbCon = new Connection();
+
+		$this->dbCon = $this->dbCon->dbConnection();
+		$this->dbCon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		} catch (PDOException $e){
+			echo "Lost connection to the database";
+		}
+	}
+
+	public function getSecretariat(){
+		$getSecretariat = $this->dbCon->Prepare("SELECT id,fullname, position, description, image_url FROM secretariat");
+		$getSecretariat->execute();
+		
+		if($getSecretariat->rowCount()>0){
+			$rows = $getSecretariat->fetchAll();
+			return $rows;
+		}
+	} //end of getting Secretariat
+	
+	public function getSpecificSecretariat($id){
+		$getSpecificSecretariat = $this->dbCon->Prepare("SELECT id,fullname, position, description, image_url FROM secretariat WHERE id=?");
+		$getSpecificSecretariat->bindParam(1,$id);
+		$getSpecificSecretariat->execute();
+		
+		if($getSpecificSecretariat->rowCount()>0){
+			$row = $getSpecificSecretariat->fetch();
+			return $row;
+		}
+	} //end of getting a specific Secretariat
+	
+	public function deleteSecretariat($id){
+		$deleteSecretariat = $this->dbCon->Prepare("DELETE FROM secretariat WHERE id=? ");
+		$deleteSecretariat->bindParam(1,$id);
+		$deleteSecretariat->execute();		
+		
+	} //end of deleting event
+	
+	//add news
+	public function addSecretariat($fullname,$position, $description,$secretariat_image){
+			
+				$addSecretariat = $this->dbCon->prepare("INSERT INTO secretariat (fullname,position,description,image_url) VALUES (:fullname,:position,:description,:image_url)" );
+				$addSecretariat->execute(array(
+						  ':fullname'=>($fullname),
+						  ':position'=>($position),
+						  ':description'=>($description),
+						  ':image_url'=>($secretariat_image)
+						  ));
+						  
+						  $_SESSION['secretariat-added']=true;
+		
+	}//End of adding Secretariat
+	
+	public function editSecretariat($bannerpath,$fullname,$position,$description, $secretariat_id){
+		$editSecretariat = $this->dbCon->PREPARE("UPDATE secretariat SET fullname=?, position=?,description=?, image_url=? WHERE id=?");
+		$editSecretariat->bindParam(1,$fullname);
+		$editSecretariat->bindParam(2,$position);
+		$editSecretariat->bindParam(3,$description);
+		$editSecretariat->bindParam(4,$bannerpath);
+		$editSecretariat->bindParam(5,$secretariat_id);
+		$editSecretariat->execute();
+		
+		$_SESSION['secretariat-edited'] =true;
+	}//End of Editing Secretariat
+	
+}
+
+
 ?>

@@ -1,59 +1,20 @@
 <?php
 include_once("../functions/functions.php");
 if(!isset($_SESSION['user'])){
-		header("Location: login.php");
-		exit;
-	}
+    header("Location: login.php");
+    exit;
+  }
+    $getSecretariat = new Secretariat();
+    $secretariats = $getSecretariat->getSecretariat();
 
-if(isset($_POST['submit'])){
-	
-		//validate ID attachment
-	//validate  file
-	 if(isset($_FILES['news_image'])){
-      $errors= array();
-      $file_name = $_FILES['news_image']['name'];
-      $file_size =$_FILES['news_image']['size'];
-      $file_tmp =$_FILES['news_image']['tmp_name'];
-      $file_type=$_FILES['news_image']['type'];
-	  $dot = ".";
-
-     // $file_ext=strtolower(end(explode($dot,$file_name)));
-
-	  $imagePath = "../images/";
-	  $imagePath = $imagePath . basename($file_name);
-	   $file_ext = pathinfo($imagePath,PATHINFO_EXTENSION);
-      $expensions= array("JPG", "jpg","PNG","png","GIF","gif");
-
-      if(in_array($file_ext,$expensions)=== false){
-         $errors[]="This file extension is not allowed.";
-      }
-
-      if($file_size > 3007152){
-
-         $errors[]='File size must be not more than 3 MB';
-
-      }
-
-      if(empty($errors)==true){
-		move_uploaded_file($file_tmp, $imagePath);
-
-      }else{
-		   $errors[]='Error Uploading file';
-
-         //print_r($errors);
-      }
-	   
-	  $news_image = $imagePath;
-	 // echo $image_Path; die();
-	 }
-
-	  $title = $_POST['title'];
-	  $content = trim($_POST['content']); 
-	 $newBanner = new News();
-	 $newBanner->addNews($title,$content,$news_image);
-	
-
-	
+if(isset($_GET['id'])){
+  $id = $_GET['id'];
+  
+  $deleteSecretariat = new Secretariat();
+  $deleteSecretariat->deleteSecretariat($id);
+  
+    $getSecretariat = new Secretariat();
+    $secretariats = $getSecretariat->getSecretariat();
 }
 
 ?>
@@ -62,7 +23,7 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Add News | Basmal</title>
+  <title>View Secretariat | Basmal</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -99,77 +60,58 @@ if(isset($_POST['submit'])){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Add News
+        View Secretariat
        
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="add-news.php">Add News</a></li>
+        <li class="active"><a href="view-secretariat.php">View Secretariat</a></li>
        
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-	<!-- form start -->
-            <form role="form" action="add-news.php" method="POST" enctype="multipart/form-data">
-			<?php
-                            if(isset($_SESSION["news-added"]) && $_SESSION["news-added"]==true)
-                            {
-                                echo "<div class='alert alert-success'>";
-                                echo "<button type='button' class='close' data-dismiss='alert'>*</button>";
-                                echo "<strong>Success! </strong>"; echo "You have successfully added news";
-                                unset($_SESSION["news-added"]);
-                                echo "</div>";
-								 header('Refresh: 5; URL= view-news.php');
-                            }
-							?>
+  <!-- form start -->
+            
       <div class="row box box-primary">
         <!-- left column -->
-        <div class="col-md-6">
+        <div class="col-md-12">
           <!-- general form elements -->
               <div class="box-body">
-                <div class="form-group">
-                  <label for="fatherName">Title</label>
-                  <input class="form-control" name="title" required>
-                </div>
-				
-				<div class="form-group">
-                  <label for="fatherMiddleName">News Image</label>
-                  <input type="file" class="" name="news_image" required>
-                </div>
-				
-				<div class="form-group">
-                  <label for="fatherLastname">News Content</label>
-                  <textarea class="form-control" name="content"  required>                       
-                        </textarea>
-                </div>
-				
+             <table class="table">
+       <?php
+            if(isset($secretariats) && count($secretariats)>0){
+              foreach($secretariats as $secretariat){ ?>
+              <tr>
+                <td><img src="../<?php echo $secretariat['image_url']; ?>" height="70px" width="70px;" /></td>
+                <td><?php echo $secretariat['fullname']; ?></td>
+                <td><?php echo substr($secretariat['description'],0, 100); ?>..........</td>
+                <td><a href="edit-secretariat.php?id=<?php echo $secretariat['id']; ?>"><i class="fa fa-pencil"></i> Edit Secretariat</a></td>
+                <td><a href="view-secretariat.php?id=<?php echo $secretariat['id']; ?>"><i class="fa fa-pencil"></i> Delete Secretariat</a></td>
+              </tr>
+              <?php
+              }
+              
+            }else{
+              echo "No Secretariats available";
+            } ?>
+        
+       </table>
               
                 
               </div>
-			  
-              <!-- /.box-body -->
-			  <div class="box-footer">
-                <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
-              </div>
-          <!-- /.box -->
+        
+              
 
         
 
         </div>
         <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-            
-		
-			
-			
-        </div>
-        <!--/.col (right) -->
+        
       </div>
       <!-- /.row -->
-	  </form>
+    
     </section>
     <!-- /.content -->
   </div>
