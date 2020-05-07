@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 
 <body>
@@ -33,12 +34,40 @@
 
     <!-- about us start-->
     <section class=" " style="padding-top:50px;">
-        <div class="container">
+        <div class="container fluid">
             <div class="row">
                 <div class="col-md-6 col-lg-6" style="padding-top:20px;">
-                    <div class="">
+                <h3>Secretariat</h3>
+                <div class="card border-secondary">
+                <div class="card-body text-secondary">
+                    <h4>Full Name Full Name Full Name</h4>
+                <div class="row">
+                    <div class="col-md-4">
                         <img src="images/mo_launch.jpg" alt="" class="img-fluid">
                     </div>
+                    <div class="col-md-8">
+                        <h4>Position</h4>
+                        <p>Description DescriptionDescription DescriptionDescriptionDescriptionDescriptionDescription DescriptionDescription DescriptionDescription DescriptionDescriptionDescription DescriptionDescription</p>
+                    </div>
+                </div>
+                </div>
+                </div>
+<br>
+                <div class="card border-secondary">
+                <div class="card-body text-secondary">
+                    <h4>Full Name Full Name Full Name</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="images/mo_launch.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-md-8">
+                        <h4>Position</h4>
+                        <p>Description DescriptionDescription DescriptionDescriptionDescriptionDescriptionDescription DescriptionDescription DescriptionDescription DescriptionDescriptionDescription DescriptionDescription</p>
+                    </div>
+                </div>
+                </div>
+                </div>
+
                 </div>
                 <div class="col-md-6 col-lg-5" style="padding-top:20px;">
                     <div class="about_part_text text-justify">
@@ -48,12 +77,12 @@
                         <ul style="padding-top:20px;">
                             <li>
                                 
-                                <h3>Vision</h3>
+                                <h3><i class="fas fa-hands-helping"></i> Vision</h3>
                                 <p>Our Vision bla bl bla bblanhjs  </p>
                             </li>
                             <li>
                               
-                                <h3>Mission</h3>
+                                <h3><i class="fas fa-bullseye"></i> Mission</h3>
                                 <p>Our Vision bla bl bla bblanhjs</p>
                             </li>
                         </ul>
@@ -62,7 +91,7 @@
             </div>
         </div>
     </section>
-   
+   <br>
    
 
     <!-- footer part start-->
