@@ -61,7 +61,7 @@ include_once("functions/functions.php");
       <div class="card-body text-secondary">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="<?php echo $secretariat['image_url']?>" alt="" class="img-fluid">
+                        <img style="max-height: 180px; max-width: 200;" src="<?php echo $secretariat['image_url']?>" alt="" class="img-fluid">
                         <hr>
                         <h4><?php echo $secretariat['fullname']?></h4>
                     </div>
