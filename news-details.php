@@ -6,6 +6,9 @@ if(isset($_GET['id'])){
 	$getSpecificNews = new News();
 	$news = $getSpecificNews->getSpecificNews($id);
 	
+}else{
+
+    echo "No news found";
 }
 ?>
 <!doctype html>
@@ -63,7 +66,13 @@ if(isset($_GET['id'])){
             </div>
 			<?php
 				
-			}
+			}else {
+                                    ?>
+                    <div class="alert alert-secondary">
+                    <p>No News available. Come check later</p>
+                    </div>
+                    <?
+            }
 		?>
             
         </div>

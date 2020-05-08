@@ -1721,6 +1721,27 @@ class News{
 			return $rows;
 		}
 	} //end of getting news
+
+
+	public function getHomeNews(){
+		$getNews = $this->dbCon->Prepare("SELECT id,title, content, news_image, date_added FROM news ORDER BY date_added DESC LIMIT 1");
+		$getNews->execute();
+		
+		if($getNews->rowCount()>0){
+			$rows = $getNews->fetchAll();
+			return $rows;
+		}
+	} //end of getting news
+
+		public function getMoreHomeNews(){
+		$getNews = $this->dbCon->Prepare("SELECT id,title, content, news_image, date_added FROM news ORDER BY date_added DESC LIMIT 3");
+		$getNews->execute();
+		
+		if($getNews->rowCount()>0){
+			$rows = $getNews->fetchAll();
+			return $rows;
+		}
+	} //end of getting news
 	
 	public function getSpecificNews($id){
 		$getSpecificNews = $this->dbCon->Prepare("SELECT id,title, content, news_image, date_added FROM news WHERE id=?");

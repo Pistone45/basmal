@@ -1,25 +1,54 @@
 <?php
 include_once("functions/functions.php");
 
-	$id = 1;
-	$gender =2;
-	//get Zome name
-	$getSpecificZone = new Zone();
-	$zone = $getSpecificZone->getSpecificZone($id);
-	
-	$getLogTable = new Game();
-	$logtable = $getLogTable->getLogTable($id,$gender);
-	
-	$status =3; //3 means game has ended - will negate in getFixture
-	$getFixture = new Game();
-	$games = $getFixture->getFixture($status);
+if (isset($_GET['id'])) {
 
-	//get news
-	$getNews = new News();
-	$news = $getNews->getNews();
-	
-	$getBanners = new Banner();
-	$banners = $getBanners->getBanners();
+    $id = $_GET['id'];
+    $gender =2;
+    //get Zome name
+    $getSpecificZone = new Zone();
+    $zone = $getSpecificZone->getSpecificZone($id);
+    
+    $getLogTable = new Game();
+    $logtable = $getLogTable->getLogTable($id,$gender);
+    
+    $status =3; //3 means game has ended - will negate in getFixture
+    $getFixture = new Game();
+    $games = $getFixture->getFixture($status);
+        //get news
+    $getNews = new News();
+    $news = $getNews->getNews();
+    
+    $getBanners = new Banner();
+    $banners = $getBanners->getBanners();
+
+
+    
+} else {
+
+    $id = 1;
+    $gender =2;
+    //get Zome name
+    $getSpecificZone = new Zone();
+    $zone = $getSpecificZone->getSpecificZone($id);
+    
+    $getLogTable = new Game();
+    $logtable = $getLogTable->getLogTable($id,$gender);
+    
+    $status =3; //3 means game has ended - will negate in getFixture
+    $getFixture = new Game();
+    $games = $getFixture->getFixture($status);
+
+        //get news
+    $getNews = new News();
+    $news = $getNews->getNews();
+    
+    $getBanners = new Banner();
+    $banners = $getBanners->getBanners();
+    
+}
+
+
 
 
 
@@ -62,7 +91,33 @@ include_once("functions/functions.php");
 	<?php include_once("header.html"); ?>
     <!-- Header part end-->
 
+<div class="jumbotron"> <h2 class="text-center"><?php
 
+if (isset($_GET['id'])) {
+
+$title = $_GET['id'];
+
+    switch ($title) {
+  case "1":
+    echo "SOUTHERN REGION";
+    break;
+  case "2":
+    echo "CENTRAL REGION";
+    break;
+  case "3":
+    echo "NOTHERN REGION";
+    break;
+case '4':
+    echo "EASTERN REGION";
+    break;
+  default:
+    echo "SOUTHERN REGION";
+}
+} else {
+   echo "SOUTHERN REGION";
+}
+
+ ?></h2></div>
     <!-- about part start-->
     <section class="">
         <div class="container">
@@ -74,10 +129,10 @@ include_once("functions/functions.php");
 								<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
 								<div class="form-select" id="default-select"">
 								<select onChange="window.location.href=this.value">
-								    <option value="southern.php">Southern</option>
-								    <option value="central.php">Central</option>
-								    <option value="northern.php">Northern</option>
-								    <option value="eastern.php">Eastern</option>
+								    <option value="log-tables.php?id=1">Southern</option>
+								    <option value="log-tables.php?id=2">Central</option>
+								    <option value="log-tables.php?id=3">Northern</option>
+								    <option value="log-tables.php?id=4">Eastern</option>
 								</select>
 								
 							</div>

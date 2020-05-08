@@ -99,6 +99,12 @@ if(isset($_GET['id'])){
 					<?php
 						
 					}
+				}else{
+					?>
+					<div class="alert alert-secondary">
+					<p>No fixture available. Come check later</p>
+					</div>
+					<?
 				}
 			 ?>
 				
