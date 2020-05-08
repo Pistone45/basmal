@@ -49,7 +49,7 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-md-12 col-lg-12" style="padding-top:20px;">
                     <div class="">
-                        <h3 align="center">BIOGRAPHY</h3>
+                        <h3 align="center">PROFILE</h3>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@ if (isset($_GET['id'])) {
                     <div class="col-md-8">
                         <br>
                         <h4><?php echo $secretariats['position']?></h4>
-                        <p><?php echo $secretariats['description'];?></p>
+                        <p><?php echo nl2br($secretariats['description']);?></p>
                     </div>
                 </div>
       </div>

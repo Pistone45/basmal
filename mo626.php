@@ -42,7 +42,6 @@ include_once("functions/functions.php");
             <div class="row text-center" style="padding-top:40px;">
                 <div class="col-md-12 col-lg-12">
                     <div class="">
-                        <h1>MO626 Fixture & Log Table</h1>
 
 	
 	

@@ -53,75 +53,14 @@ include_once("functions/functions.php");
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<style>
-		.blog .carousel-indicators {
-			left: 0;
-			top: auto;
-			bottom: -40px;
-
-		}
-
-		/* The colour of the indicators */
-		.blog .carousel-indicators li {
-			background: #a3a3a3;
-			border-radius: 50%;
-			width: 8px;
-			height: 8px;
-		}
-
-		.blog .carousel-indicators .active {
-		background: #707070;
-		}
-	</style>
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
+
 
     <!--::header part start::-->
 	<?php include_once("header.html"); ?>
     <!-- Header part end-->
-
-    <!-- banner part start-->
-    <section class="banner_part">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-  <?php
-	if(isset($banners) && count($banners)>0){
-		$count = 1; 
-		foreach($banners as $banner){ ?>
-			 <div class="carousel-item <?php if($count ==1){ echo "active"; }?>">
-			  <img src="<?php echo $banner['image_path']; ?>" class="d-block w-100" alt="...">
-			</div>
-		<?php
-		$count++;
-		}
-	}
-  ?>
-
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-    </section>
-    <!-- banner part start-->
-<br><br>
-<div class="row container">
-	<div class="col-md-6">
-		<iframe width="600" height="400" src="https://www.youtube.com/embed/QHi7mKbIIt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</div>
-
-	<div class="col-md-6">
-<div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-width="600" data-height="400" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
-	</div>
-</div>
 
 
     <!-- about part start-->
@@ -130,17 +69,16 @@ include_once("functions/functions.php");
             <div class="row justify-content-between" style="padding-top:30px;">
                 <div class="col-md-6 col-lg-6">
 				<form role="form">
+					<p>Select a zone below to see more</p>
 					<div class="input-group-icon ">
 								<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
 								<div class="form-select" id="default-select"">
-											<select name="brand" id="brand">
-											
-											<option value=" 1">Select Zone</option>
-											<option value="1">Southern</option>
-											<option value="1">Eastern</option>
-											<option value="1">Central</option>
-											<option value="1">Northern</option>
-											</select>
+								<select onChange="window.location.href=this.value">
+								    <option value="southern.php">Southern</option>
+								    <option value="central.php">Central</option>
+								    <option value="northern.php">Northern</option>
+								    <option value="eastern.php">Eastern</option>
+								</select>
 								
 							</div>
 					</div>
@@ -148,7 +86,8 @@ include_once("functions/functions.php");
 				
 				 <div class="row" id="show_product">  
                           <?php //echo fill_product($connect);?>  
-                     </div> 
+                     </div>
+                    <br>
                    <h4>Log Table</h4>
 				   
 				   <table id="example1" class="table table-bordered table-striped">

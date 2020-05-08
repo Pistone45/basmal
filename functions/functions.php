@@ -1792,7 +1792,7 @@ class Secretariat{
 	}
 
 	public function getSecretariat(){
-		$getSecretariat = $this->dbCon->Prepare("SELECT id,fullname, position, description, image_url FROM secretariat");
+		$getSecretariat = $this->dbCon->Prepare("SELECT id,fullname, position, description, image_url FROM secretariat ORDER BY rank DESC");
 		$getSecretariat->execute();
 		
 		if($getSecretariat->rowCount()>0){

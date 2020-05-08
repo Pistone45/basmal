@@ -1,7 +1,7 @@
 <?php
 include_once("functions/functions.php");
 
-	$id = 1;
+	$id = 4;
 	$gender =2;
 	//get Zome name
 	$getSpecificZone = new Zone();
@@ -20,6 +20,23 @@ include_once("functions/functions.php");
 	
 	$getBanners = new Banner();
 	$banners = $getBanners->getBanners();
+
+if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        
+        $getPhotosPerAlbums= new Gallery();
+        $photos = $getPhotosPerAlbums->getPhotosPerAlbums($id);
+    }
+        $id =4;
+        $gender =1; //men log table
+        $getLogTable = new Game();
+        $logtable = $getLogTable->getLogTable($id,$gender);
+        
+        $season ="2019/2020";
+        $status =0; //game not started or no scores
+        $getScores = new Game();
+        $results = $getScores->getScores($season,$status);
+
 
 
 
@@ -53,94 +70,33 @@ include_once("functions/functions.php");
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<style>
-		.blog .carousel-indicators {
-			left: 0;
-			top: auto;
-			bottom: -40px;
-
-		}
-
-		/* The colour of the indicators */
-		.blog .carousel-indicators li {
-			background: #a3a3a3;
-			border-radius: 50%;
-			width: 8px;
-			height: 8px;
-		}
-
-		.blog .carousel-indicators .active {
-		background: #707070;
-		}
-	</style>
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
+
 
     <!--::header part start::-->
 	<?php include_once("header.html"); ?>
     <!-- Header part end-->
 
-    <!-- banner part start-->
-    <section class="banner_part">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-  <?php
-	if(isset($banners) && count($banners)>0){
-		$count = 1; 
-		foreach($banners as $banner){ ?>
-			 <div class="carousel-item <?php if($count ==1){ echo "active"; }?>">
-			  <img src="<?php echo $banner['image_path']; ?>" class="d-block w-100" alt="...">
-			</div>
-		<?php
-		$count++;
-		}
-	}
-  ?>
-
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-    </section>
-    <!-- banner part start-->
-<br><br>
-<div class="row container">
-	<div class="col-md-6">
-		<iframe width="600" height="400" src="https://www.youtube.com/embed/QHi7mKbIIt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</div>
-
-	<div class="col-md-6">
-<div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-width="600" data-height="400" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
-	</div>
-</div>
-
-
+<div class="jumbotron"> <h2 class="text-center">EASTERN</h2></div>
     <!-- about part start-->
     <section class="">
         <div class="container">
             <div class="row justify-content-between" style="padding-top:30px;">
                 <div class="col-md-6 col-lg-6">
+                    <h2>Log Table</h2>
 				<form role="form">
+					<p>More zones here</p>
 					<div class="input-group-icon ">
 								<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
 								<div class="form-select" id="default-select"">
-											<select name="brand" id="brand">
-											
-											<option value=" 1">Select Zone</option>
-											<option value="1">Southern</option>
-											<option value="1">Eastern</option>
-											<option value="1">Central</option>
-											<option value="1">Northern</option>
-											</select>
+								<select onChange="window.location.href=this.value">
+								    <option value="southern.php">Southern</option>
+								    <option value="central.php">Central</option>
+								    <option value="northern.php">Northern</option>
+								    <option value="eastern.php">Eastern</option>
+								</select>
 								
 							</div>
 					</div>
@@ -148,8 +104,8 @@ include_once("functions/functions.php");
 				
 				 <div class="row" id="show_product">  
                           <?php //echo fill_product($connect);?>  
-                     </div> 
-                   <h4>Log Table</h4>
+                     </div>
+                    <br>
 				   
 				   <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -193,13 +149,42 @@ include_once("functions/functions.php");
                
               </table>
                 </div>
-                <div class="col-md-6 col-lg-5">
-                    <div class="about_part_text">
+             <div class="col-lg-6 col-sm-12">
+                <h2>Results</h2>
+             <?php 
+                if(isset($results) && count($results)>0){
+                    foreach($results as $result){ ?>
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-5 col-xs-5">
+                                <img src="<?php echo substr($result['home_logo'],3); ?>" class="img-responsive" height="70" width="70" style="min-height:70px; min-width:70px;"/>  
+                                <br><?php echo $result['home_team']; ?> <b><?php echo $result['home_team_score']; ?></b>
+                                </div>
+                                <div class="col-lg-1 col-sm-1 col-xs-2">
+                                    <h4>VS</h4>
+                                </div>
+                                
+                                <div class="col-lg-4 col-sm-5 col-xs-5">
+                                    <img src="<?php echo substr($result['away_logo'],3); ?>" class="img-fluid" height="70" width="70"style="min-height:70px; min-width:70px;"/> 
+                                    <br> <?php echo $result['away_team']; ?> <b><?php echo $result['away_team_score']; ?></b>
+                                </div>
+                                <div class="col-lg-3 col-sm-12 col-xs-12">
+                                    <?php echo $result['game_status']?>
+                                    <hr>
+                                    
+                                </div>
+                            </div>
+                             
+                          </div>
+                        </div>
+                    <?php
                         
-                        <img src="images/elections.png" alt="BASMAL Elections" />
-						<p>Do you have what it takes to be a member of SOZOBAL/CEZOBAL/NOZOBAL? <a href="docs/Zone Elections.pdf" target="_blank">Click here to download the forms</a></p>
-                    </div>
-                </div>
+                    }
+                }
+             ?>
+                
+             </div>
             </div>
         </div>
     </section>
