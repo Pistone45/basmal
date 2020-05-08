@@ -76,6 +76,9 @@ include_once("functions/functions.php");
 </head>
 
 <body>
+    <div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=1814164448825308&autoLogAppEvents=1"></script>
     <!--::header part start::-->
@@ -112,6 +115,17 @@ include_once("functions/functions.php");
 </div>
     </section>
     <!-- banner part start-->
+
+<div class="row container">
+	<div class="col-md-6">
+		<iframe width="600" height="400" src="https://www.youtube.com/embed/QHi7mKbIIt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+
+	<div class="col-md-6">
+<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBASKETBALLMALAWI%2F&tabs=timeline&width=600&height=400&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="600" height="400" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+	</div>
+</div>
+
 
     <!-- about part start-->
     <section class="">
@@ -187,154 +201,6 @@ include_once("functions/functions.php");
                         
                         <img src="images/elections.png" alt="BASMAL Elections" />
 						<p>Do you have what it takes to be a member of SOZOBAL/CEZOBAL/NOZOBAL? <a href="docs/Zone Elections.pdf" target="_blank">Click here to download the forms</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- about part end-->
-	<div class="jumbotron"> <h2 class="text-center">MO626 BASKETBALL CHALLENGE SEASON 3 - GO, FIGHT, WIN!</h2></div>
-	
-	
-	
-	
-<div class="container">
-            <div class="row blog">
-                <div class="col-md-12">
-                    <div id="blogCarousel" class="carousel slide" data-ride="carousel">
-
-                        
-
-                        <!-- Carousel items -->
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active">
-                                <div class="row">
-								<?php 
-				if(isset($games) && count($games)>0){
-					foreach($games as $game){ ?>
-					<div class="col-md-6" style="padding-bottom:10px;">
-						<div class="card">
-						  <div class="card-body">
-							<div class="row">
-								<div class="col-lg-3 col-sm-5 col-xs-5">
-								<center><img src="<?php echo substr($game['home_logo'],3); ?>" class="img-responsive" height="70" width="70" style="min-height:70px; min-width:70px;"/>  <br><?php echo $game['home_team']; ?></center>
-								</div>
-								<div class="col-lg-1 col-sm-1 col-xs-2">
-									<center><h4>VS</h4></center>
-								</div>
-								
-								<div class="col-lg-3 col-sm-5 col-xs-5">
-								<center>	<img src="<?php echo substr($game['away_logo'],3); ?>" class="img-fluid" height="70" width="70"style="min-height:70px; min-width:70px;"/>  <br> <?php echo $game['away_team']; ?></center>
-								</div>
-								<div class="col-lg-5 col-sm-12 col-xs-12">
-								<center>	<?php echo $game['venue']?></center>
-									<hr>
-									<center><?php echo $game['date_time']?></center>
-								</div>
-							</div>
-							 
-						  </div>
-						</div>
-						
-					</div>
-					<?php
-						
-					}
-				}
-			 ?>
-                                    
-                                </div>
-                                <!--.row-->
-                            </div>
-                            <!--.item-->
-
-                         
-
-                        </div>
-                        <!--.carousel-inner-->
-                    </div>
-                    <!--.Carousel-->
-
-                </div>
-            </div>
-</div>
-
-	
-	
-	
-	
-	
-    <!-- our_service start-->
-    <section class="our_service padding_top" style="background-color:#d28745;">
-        <div class="container">
-          
-            <div class="row">
-                <div class="col-lg-8 col-sm-12 col-xl-8">
-                     
-			  
-					<!-- news -->
-				 <div class="row">
-				 <?php
-					if(isset($news) && count($news)>0){
-						foreach($news as $new){ ?>
-					<div class="col-sm-12 col-lg-4 col-xl-4" style="padding-bottom:20px;">
-					
-						 <div class="single-home-blog">
-                        <div class="card">
-                            <img src="<?php echo substr($new['news_image'],3);?>" class="card-img-top" style="max-height:100px;" alt="blog">
-                            <div class="card-body">
-                                
-                                <a href="blog.html">
-                                    <h5 class="card-title"><?php echo $new['title']; ?></h5>
-                                </a>
-                                <a href="news-details.php?id=<?php echo $new['id']; ?>" class="btn_3">read more</a>
-                            </div>
-                        </div>
-                    </div>
-				
-                   
-                </div>
-                		<?php
-							
-						}
-					}
-				?>
-                
-				</div>
-					<!--- end news -->
-                </div>
-                <div class="col-lg-4 col-sm-12 col-xl-4">
-                    <div class="fb-page" data-href="https://www.facebook.com/BASKETBALLMALAWI" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/BASKETBALLMALAWI" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/BASKETBALLMALAWI">Basketball Association of Malawi-BASMAL</a></blockquote></div>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-    <!-- our_service part end-->
-
-    <!-- about part start-->
-    <section class="about_part  ">
-        <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-md-6 col-lg-6">
-                    <div class="about_part_text">
-                        <h2>Learn More About MO626 Digital Plus</h2>
-                        <p>Mo626ice is a Mobile Phone Banking system through which you can access various banking 
-						services from mobile phone handsets. Mo626ice can be accessed from any mobile phone network 
-						in the world as long as the number you are using is registered on the system. You can access 
-						the services by dialling *626# on your mobile and follow the prompt instructions. </p>
-                        <div class="about_text_iner">
-                            
-                            <div class="about_iner_content">
-                                <a href="https://natbank.co.mw/personal/electronic-banking/mo626ice" target="_blank"><h3>Read More</h3></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="about_part_img">
-                        <img src="images/mo_services.JPG" alt="">
                     </div>
                 </div>
             </div>

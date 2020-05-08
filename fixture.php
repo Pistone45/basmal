@@ -23,7 +23,7 @@ if(isset($_GET['id'])){
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Gallery | Basketball Association of Malawi</title>
+    <title>Fixture | Basketball Association of Malawi</title>
     <link rel="icon" href="img/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">

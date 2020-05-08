@@ -23,7 +23,7 @@ if(isset($_GET['id'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>View News | Lilongwe Private School</title>
+  <title>View News | Basmal</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -86,7 +86,7 @@ if(isset($_GET['id'])){
 							<tr>
 								<td><img src="<?php echo $new['news_image']; ?>" height="70px" width="70px;" /></td>
 								<td><?php echo $new['title']; ?></td>
-								<td><?php echo $new['content']; ?></td>
+								<td><?php echo substr($new['content'],0, 100); ?>....</td>
 								<td><a href="edit-news.php?id=<?php echo $new['id']; ?>"><i class="fa fa-pencil"></i> Edit News</a></td>
 								<td><a href="view-news.php?id=<?php echo $new['id']; ?>"><i class="fa fa-pencil"></i> Delete News</a></td>
 							</tr>
