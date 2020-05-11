@@ -1870,4 +1870,79 @@ class Secretariat{
 }
 
 
+class Videos{
+	private $dbCon;
+
+//private $username;
+
+	public function __construct(){
+
+		try{
+
+		$this->dbCon = new Connection();
+
+		$this->dbCon = $this->dbCon->dbConnection();
+		$this->dbCon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		} catch (PDOException $e){
+			echo "Lost connection to the database";
+		}
+	}
+
+	public function getVideos(){
+		$getVideos = $this->dbCon->Prepare("SELECT id,video_url, description FROM videos");
+		$getVideos->execute();
+		
+		if($getVideos->rowCount()>0){
+			$rows = $getVideos->fetchAll();
+			return $rows;
+		}
+	} //end of getting Secretariat
+	
+	public function getSpecificSecretariat($id){
+		$getSpecificSecretariat = $this->dbCon->Prepare("SELECT id,fullname, position, description, image_url FROM secretariat WHERE id=?");
+		$getSpecificSecretariat->bindParam(1,$id);
+		$getSpecificSecretariat->execute();
+		
+		if($getSpecificSecretariat->rowCount()>0){
+			$row = $getSpecificSecretariat->fetch();
+			return $row;
+		}
+	} //end of getting a specific Secretariat
+	
+	public function deleteVideo($id){
+		$deleteVideo = $this->dbCon->Prepare("DELETE FROM videos WHERE id=? ");
+		$deleteVideo->bindParam(1,$id);
+		$deleteVideo->execute();		
+		
+	} //end of deleting event
+	
+	//add news
+	public function addVideo($video_url, $description){
+			
+				$addVideo = $this->dbCon->prepare("INSERT INTO videos (video_url,description) VALUES (:video_url,:description)" );
+				$addVideo->execute(array(
+						  ':video_url'=>($video_url),
+						  ':description'=>($description),
+						  ));
+						  
+						  $_SESSION['video-added']=true;
+		
+	}//End of adding Secretariat
+	
+	public function editSecretariat($bannerpath,$fullname,$position,$description, $secretariat_id){
+		$editSecretariat = $this->dbCon->PREPARE("UPDATE secretariat SET fullname=?, position=?,description=?, image_url=? WHERE id=?");
+		$editSecretariat->bindParam(1,$fullname);
+		$editSecretariat->bindParam(2,$position);
+		$editSecretariat->bindParam(3,$description);
+		$editSecretariat->bindParam(4,$bannerpath);
+		$editSecretariat->bindParam(5,$secretariat_id);
+		$editSecretariat->execute();
+		
+		$_SESSION['secretariat-edited'] =true;
+	}//End of Editing Secretariat
+	
+}
+
+
 ?>

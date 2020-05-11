@@ -27,6 +27,8 @@ include_once("functions/functions.php");
 	$getMoreHomeNews = new News();
 	$homenews = $getMoreHomeNews->getMoreHomeNews();
 
+	$getVideos = new Videos();
+	$videos = $getVideos->getVideos();
 
 
 ?>
@@ -78,8 +80,11 @@ include_once("functions/functions.php");
 		.blog .carousel-indicators .active {
 		background: #707070;
 		}
-		.img {
-  border-radius: 50%;
+
+		#home-title{
+			padding-top: 10px;
+		}
+
 }
 	</style>
 </head>
@@ -125,7 +130,7 @@ include_once("functions/functions.php");
     </section>
     <!-- banner part start-->
 	</div>
-	<div style="padding-top: 12px;" class="col-md-4">
+	<div style="padding-top: 12px;" class="col-md-4 col-xs-12">
 		<?php
 			if(isset($news) && count($news)>0){
 		foreach($news as $new){ ?>
@@ -143,11 +148,11 @@ include_once("functions/functions.php");
 	<?php
 		if(isset($homenews) && count($homenews)>0){
 		foreach($homenews as $home){ ?>
-		<div class="row">
-			<div class="col-md-2">
-				<img class="img" style="max-width: 50px; max-height: 50px;" src="<?php echo substr($home['news_image'],3);?>">
+		<div class="row col-xs-12">
+			<div class="col-md-2 col-xs-12">
+				<img class="img" id="home-title" style="max-width: 100%; max-height: 100%;" src="<?php echo substr($home['news_image'],3);?>">
 			</div>
-			<div class="col-md-10">
+			<div class="col-md-10 col-xs-12" id="home-title">
 				<a href="news-details.php?id=<?php echo $home['id']; ?>"><h6><?php echo $home['title']?></h6></a>
 			</div>
 		</div><br>
@@ -179,30 +184,27 @@ include_once("functions/functions.php");
 </div>
 <br>
 <h1 align="center">VIDEOS</h1>   
-<div class="row container-fluid col-xs-12">
+<div style="width: 100%;" class="row container-fluid col-xs-12">
+
+ <?php
+		if(isset($videos) && count($videos)>0){
+			foreach($videos as $video){ ?>
 	<div style="padding-top: 20px;" class="col-md-3 col-xs-12">
-		<iframe width="100%" height="280" src="https://www.youtube.com/embed/5thLACHhvy0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Description Description Description Description Description Description Description Description Description </p>
+		<iframe width="100%" height="280" src="<?php echo $video['video_url']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		
+		<p><?php echo $video['description']; ?></p>
 	</div>
 
-	<div style="padding-top: 20px;" class="col-md-3 col-xs-12">
-		<iframe width="100%" height="280" src="https://www.youtube.com/embed/wpqJlxd3o1I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		<p>Description Description Description Description Description Description Description Description Description </p>
-	</div>
+			<?php
+		}
+		
+	}else{
+		echo "No Videos available";
+	} ?>
+				
 
-	<div style="padding-top: 20px;" class="col-md-3 col-xs-12">
-		<iframe width="100%" height="280" src="https://www.youtube.com/embed/R5ixMxQfxJ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		<p>Description Description Description Description Description Description Description Description Description </p>
-	</div>
-
-	<div style="padding-top: 20px;" class="col-md-3 col-xs-12">
-		<iframe width="100%" height="280" src="https://www.youtube.com/embed/dulPWP7vDj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		<p>Description Description Description Description Description Description Description Description Description </p>
-	</div>
 
 </div>
-
 
     <!-- footer part start-->
 		<?php include_once("footer.html"); ?>

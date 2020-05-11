@@ -45,7 +45,7 @@ include_once("functions/functions.php");
                     <div class="about_part_text text-justify">
                         <h3>Brief Background</h3>
                         <p>Basketball Association of Malawi is the only body mandated to run run basketball in Malawi. Basmal is affiiated to FIBA. 
-						The Southern Zone Basketball League, The Central Zone Basketball League and the Nothern Zone Basketball League are all affiiated to Basmal.</p>
+                        The Southern Zone Basketball League, The Central Zone Basketball League and the Nothern Zone Basketball League are all affiiated to Basmal.</p>
                     </div>
                 </div>
             </div>
