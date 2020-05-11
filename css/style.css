@@ -2155,6 +2155,7 @@ ul {
 /* line 3, /Applications/MAMP/htdocs/palash/cl/july 2019/190 Pexcon Construction/190 Pexcon Construction html/sass/_menu.scss */
 .main_menu .navbar-brand {
   padding: 0rem !important;
+
 }
 
 @media (max-width: 991px) {
@@ -2197,10 +2198,11 @@ ul {
   text-transform: capitalize;
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 2000px) {
   /* line 28, /Applications/MAMP/htdocs/palash/cl/july 2019/190 Pexcon Construction/190 Pexcon Construction html/sass/_menu.scss */
   .main_menu .main-menu-item ul li .nav-link {
     padding: 0px 16px;
+    color: white;
   }
 }
 

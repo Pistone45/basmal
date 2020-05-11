@@ -32,6 +32,7 @@ include_once("functions/functions.php");
 </head>
 
 <body>
+
     <!--::header part start::-->
    <?php include_once("header.html"); ?>
     <!-- Header part end-->
