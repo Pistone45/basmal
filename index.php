@@ -78,10 +78,14 @@ include_once("functions/functions.php");
 		.blog .carousel-indicators .active {
 		background: #707070;
 		}
+		.img {
+  border-radius: 50%;
+}
 	</style>
 </head>
 
 <body>
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
 
@@ -90,7 +94,7 @@ include_once("functions/functions.php");
     <!-- Header part end-->
 
 <div class="row container-fluid">
-	<div class="col-md-8">
+	<div class="col-md-8 col-xs-12">
 		    <!-- banner part start-->
     <section class="banner_part">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -121,12 +125,12 @@ include_once("functions/functions.php");
     </section>
     <!-- banner part start-->
 	</div>
-	<div class="col-md-4">
+	<div style="padding-top: 12px;" class="col-md-4">
 		<?php
 			if(isset($news) && count($news)>0){
 		foreach($news as $new){ ?>
 		<a style="" href="news-details.php?id=<?php echo $new['id']; ?>"><h3><?php echo $new['title']?></h3></a>
-		<h5><?php echo substr($new['content'],0, 150);?>....</h5>
+		<h5><?php echo substr($new['content'],0, 140);?>.... <a href="news-details.php?id=<?php echo $new['id']; ?>"><i>read more</i></a></h5>
 				<?php
 			
 		}
@@ -140,13 +144,13 @@ include_once("functions/functions.php");
 		if(isset($homenews) && count($homenews)>0){
 		foreach($homenews as $home){ ?>
 		<div class="row">
-			<div class="col-md-4">
-				<img style="max-width: 100px; max-height: 50px;" src="<?php echo substr($home['news_image'],3);?>">
+			<div class="col-md-2">
+				<img class="img" style="max-width: 50px; max-height: 50px;" src="<?php echo substr($home['news_image'],3);?>">
 			</div>
-			<div class="col-md-8">
-				<a href="news-details.php?id=<?php echo $home['id']; ?>"><h5><?php echo $home['title']?></h5></a>
+			<div class="col-md-10">
+				<a href="news-details.php?id=<?php echo $home['id']; ?>"><h6><?php echo $home['title']?></h6></a>
 			</div>
-		</div>
+		</div><br>
 			<?php
 			
 		}
@@ -161,36 +165,42 @@ include_once("functions/functions.php");
 <h1 align="center">CONNECT WITH US</h1>
 <br>
 <div class="row container-fluid">
-	<div class="col-md-4">
-		<iframe width="400" height="400" src="https://www.youtube.com/embed/QHi7mKbIIt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<div class="col-md-4 col-xs-12">
+		<iframe width="100%" height="350" src="https://www.youtube.com/embed/QHi7mKbIIt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>
 
-	<div class="col-md-4">
-<div class="fb-post" data-href="https://www.facebook.com/photo/?fbid=1651521418344348&amp;set=pcb.1651523725010784&amp;__cft__[0]=AZVw9SpieKcCPhyGGP7FYQ81vRSju7gKWBRjqivhXOicc_gZQByJ2fZlxCovGLKfBI2Mx-x_Z_jABlT-n5SmR0LWNZz98y8XA3aveAnyW0rT2zFQPJNT8O22DDgfVXSVrBz_LEiY5YqjKB9XhkJUjEGorCq01UpzSQkGFIK_BV9mlA&amp;__tn__=*bH-R" data-show-text="true" data-width=""><blockquote cite="https://developers.facebook.com/BASKETBALLMALAWI/photos/a.440393119457190/1651521418344348/?type=3" class="fb-xfbml-parse-ignore">Posted by <a href="https://www.facebook.com/BASKETBALLMALAWI/">Basketball Association of Malawi-BASMAL</a> on&nbsp;<a href="https://developers.facebook.com/BASKETBALLMALAWI/photos/a.440393119457190/1651521418344348/?type=3">Thursday, 30 April 2020</a></blockquote></div>
+	<div class="col-md-4 col-xs-12">
+<div style="width: 100%; max-height: 350px; height: 350px;" class="fb-post" data-href="https://www.facebook.com/photo/?fbid=1651521418344348&amp;set=pcb.1651523725010784&amp;__cft__[0]=AZVw9SpieKcCPhyGGP7FYQ81vRSju7gKWBRjqivhXOicc_gZQByJ2fZlxCovGLKfBI2Mx-x_Z_jABlT-n5SmR0LWNZz98y8XA3aveAnyW0rT2zFQPJNT8O22DDgfVXSVrBz_LEiY5YqjKB9XhkJUjEGorCq01UpzSQkGFIK_BV9mlA&amp;__tn__=*bH-R" data-show-text="true" data-width=""><blockquote cite="https://developers.facebook.com/BASKETBALLMALAWI/photos/a.440393119457190/1651521418344348/?type=3" class="fb-xfbml-parse-ignore">Posted by <a href="https://www.facebook.com/BASKETBALLMALAWI/">Basketball Association of Malawi-BASMAL</a> on&nbsp;<a href="https://developers.facebook.com/BASKETBALLMALAWI/photos/a.440393119457190/1651521418344348/?type=3">Thursday, 30 April 2020</a></blockquote></div>
 	</div>
 
-	<div class="col-md-4">
-		<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The Council’s sports development manager Ruth Mzengo said they can&#39;t entrust associations with funding in the absence of financial reports. Football Association of Malawi, Netball Association of Malawi &amp; Basketball Association of Malawi are among the non-compliant bodies</p>&mdash; NationOnline (@NationOnlineMw) <a href="https://twitter.com/NationOnlineMw/status/1178681866704097280?ref_src=twsrc%5Etfw">September 30, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<div class="col-md-4 col-xs-12">
+<a class="twitter-timeline" data-lang="en" data-height="350" data-dnt="true" href="https://twitter.com/Basketball_Mw?ref_src=twsrc%5Etfw">Tweets by Basketball_Mw</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>
 <br>
 <h1 align="center">VIDEOS</h1>   
-<div class="row container-fluid">
-	<div class="col-md-3">
-		<iframe width="300" height="300" src="https://www.youtube.com/embed/5thLACHhvy0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="row container-fluid col-xs-12">
+	<div style="padding-top: 20px;" class="col-md-3 col-xs-12">
+		<iframe width="100%" height="280" src="https://www.youtube.com/embed/5thLACHhvy0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Description Description Description Description Description Description Description Description Description </p>
+		
 	</div>
 
-	<div class="col-md-3">
-		<iframe width="300" height="300" src="https://www.youtube.com/embed/wpqJlxd3o1I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<div style="padding-top: 20px;" class="col-md-3 col-xs-12">
+		<iframe width="100%" height="280" src="https://www.youtube.com/embed/wpqJlxd3o1I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<p>Description Description Description Description Description Description Description Description Description </p>
 	</div>
 
-	<div class="col-md-3">
-		<iframe width="300" height="300" src="https://www.youtube.com/embed/R5ixMxQfxJ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<div style="padding-top: 20px;" class="col-md-3 col-xs-12">
+		<iframe width="100%" height="280" src="https://www.youtube.com/embed/R5ixMxQfxJ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<p>Description Description Description Description Description Description Description Description Description </p>
 	</div>
 
-	<div class="col-md-3">
-		<iframe width="300" height="300" src="https://www.youtube.com/embed/dulPWP7vDj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<div style="padding-top: 20px;" class="col-md-3 col-xs-12">
+		<iframe width="100%" height="280" src="https://www.youtube.com/embed/dulPWP7vDj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<p>Description Description Description Description Description Description Description Description Description </p>
 	</div>
+
 </div>
 
 

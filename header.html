@@ -1,4 +1,4 @@
- <header class="main_menu home_menu" style="background-color:#e8e8e8; background-image: url(img/bg.jpg)">
+ <header class="main_menu home_menu" style="background-color:black; background-image: url(img/bg.jpg)">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
@@ -12,16 +12,16 @@
 
                         <div class="collapse navbar-collapse main-menu-item justify-content-end"
                             id="navbarSupportedContent">
-                            <ul class="navbar-nav align-items-center" style="color:#fff;">
+                            <ul class="navbar-nav align-items-center" id="id">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php" style="color:#fff;">Home</a>
+                                    <a class="nav-link" href="index.php" id="id">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.php" style="color:#fff;">About</a>
+                                    <a class="nav-link" href="about.php" id="id">About</a>
                                 </li>
 
                             <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" style="color: #fff;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="id" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Mo626
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -33,14 +33,14 @@
                               </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="news.php" style="color:#fff;">News</a>
+                                    <a class="nav-link" href="news.php" id="id">News</a>
                                 </li>
 								<li class="nav-item">
-                                    <a class="nav-link" href="gallery.php" style="color:#fff;">Gallery</a>
+                                    <a class="nav-link" href="gallery.php" id="id">Gallery</a>
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.php" style="color:#fff;">Contact</a>
+                                    <a class="nav-link" id="id" href="contact.php">Contact</a>
                                 </li>
                                 
                             </ul>
@@ -49,4 +49,57 @@
                 </div>
             </div>
         </div>
+
+<style type="text/css">
+   .main_menu {
+    .navbar-brand {
+        padding: 0rem !important;
+        @media #{$tab}{
+            img{
+                max-width: 120px;
+            }
+        }
+        
+    }
+
+    .navbar {
+        padding: 20px 0px;
+    }
+    .navbar-toggler{
+        span{
+            font-size: 30px;
+        }
+    }
+    .main-menu-item {
+        text-align: right;
+        justify-content: right;
+        @media #{$medium_device}{
+            padding-left: 25px;
+        }
+        ul {
+            li .nav-link{
+                color: $menu_color;
+                font-size: 15px;
+                padding: 0px 24px;
+                font-family: $font_stack_1;
+                text-transform: capitalize;
+                @media #{$medium_device}{
+                    padding: 0px 16px;
+                    color: white;
+                }
+                &:hover{
+                    color: #ee390f;
+                }
+                
+            }
+            .btn_1{
+                color: $white-color;
+                font-size: 14px;
+                padding: 11.5px 33px;
+                margin-left: 75px;
+            }
+        }
+    }
+} 
+</style>
     </header>

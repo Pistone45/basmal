@@ -33,6 +33,7 @@
 				text-transform: capitalize;
 				@media #{$medium_device}{
 					padding: 0px 16px;
+					color: white;
 				}
 				&:hover{
 					color: #ee390f;

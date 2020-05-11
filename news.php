@@ -45,7 +45,7 @@ include_once("functions/functions.php");
 <?php
 	if(isset($news) && count($news)>0){
 		foreach($news as $new){ ?>
-	<div class="col-md-3">
+	<div style="padding-top: 20px; width: 100%;" class="col-md-3">
 	<div class="card border-secondary">
 	  <div class="card-body text-secondary">
 	  	<img src="<?php echo substr($new['news_image'],3);?>" class="card-img-top" style="max-height:200px;" alt="blog">
@@ -61,7 +61,7 @@ include_once("functions/functions.php");
 			
 		}
 	}
-?>	
+?>
 
 </div>
  

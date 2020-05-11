@@ -64,7 +64,7 @@ if(isset($_GET['id'])){
 
     <!--================Blog Area =================-->
     <section class="blog_area section_padding" style="padding-top:40px;">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
 			 <div class="col-lg-6 col-sm-12">
 			 <?php 
@@ -74,16 +74,16 @@ if(isset($_GET['id'])){
 						  <div class="card-body">
 							<div class="row">
 								<div class="col-lg-4 col-sm-5 col-xs-5">
-								<img src="<?php echo substr($result['home_logo'],3); ?>" class="img-responsive" height="70" width="70" style="min-height:70px; min-width:70px;"/>  
-								<br><?php echo $result['home_team']; ?> <b><?php echo $result['home_team_score']; ?></b>
+								<img src="<?php echo substr($result['home_logo'],3); ?>" class="img-responsive" height="40" width="40" style="min-height:40px; min-width:40px;"/>  
+								<?php echo $result['home_team']; ?> <b><?php echo $result['home_team_score']; ?></b>
 								</div>
 								<div class="col-lg-1 col-sm-1 col-xs-2">
 									<h4>VS</h4>
 								</div>
 								
 								<div class="col-lg-4 col-sm-5 col-xs-5">
-									<img src="<?php echo substr($result['away_logo'],3); ?>" class="img-fluid" height="70" width="70"style="min-height:70px; min-width:70px;"/> 
-									<br> <?php echo $result['away_team']; ?> <b><?php echo $result['away_team_score']; ?></b>
+									<img src="<?php echo substr($result['away_logo'],3); ?>" class="img-fluid" height="40" width="40"style="min-height:40px; min-width:40px;"/> 
+									<?php echo $result['away_team']; ?> <b><?php echo $result['away_team_score']; ?></b>
 								</div>
 								<div class="col-lg-3 col-sm-12 col-xs-12">
 									<?php echo $result['game_status']?>
@@ -101,7 +101,7 @@ if(isset($_GET['id'])){
 			 ?>
 				
 			 </div>
-			 
+
 			 <div class="col-lg-6 col-sm-12">
 				<h4>Log Table</h4>
 				   
