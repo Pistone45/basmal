@@ -486,6 +486,67 @@ LOCK TABLES `zones` WRITE;
 INSERT INTO `zones` VALUES (1,'Southern Zone'),(2,'Central Zone'),(3,'Nothern Zone'),(4,'Eastern Zone');
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `zones_fixture`
+--
+
+DROP TABLE IF EXISTS `zones_fixture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `zones_fixture` (
+  `fixture_id` int(11) NOT NULL AUTO_INCREMENT,
+  `home_team` int(11) NOT NULL,
+  `away_team` int(11) NOT NULL,
+  `date_time` datetime NOT NULL,
+  `venue_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `season` varchar(45) NOT NULL,
+  PRIMARY KEY (`fixture_id`),
+  KEY `venue_id` (`venue_id`),
+  CONSTRAINT `zones_fixture_ibfk_1` FOREIGN KEY (`venue_id`) REFERENCES `venue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `zones_fixture`
+--
+
+LOCK TABLES `zones_fixture` WRITE;
+/*!40000 ALTER TABLE `zones_fixture` DISABLE KEYS */;
+/*!40000 ALTER TABLE `zones_fixture` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `zones_results`
+--
+
+DROP TABLE IF EXISTS `zones_results`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `zones_results` (
+  `results_id` int(11) NOT NULL AUTO_INCREMENT,
+  `home_team` int(11) NOT NULL,
+  `home_team_score` int(11) DEFAULT NULL,
+  `away_team` int(11) NOT NULL,
+  `away_team_score` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `last_updated` datetime DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  `season` varchar(45) NOT NULL,
+  `fixture_id` int(11) NOT NULL,
+  PRIMARY KEY (`results_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `zones_results`
+--
+
+LOCK TABLES `zones_results` WRITE;
+/*!40000 ALTER TABLE `zones_results` DISABLE KEYS */;
+/*!40000 ALTER TABLE `zones_results` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -496,4 +557,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-13 19:02:06
+-- Dump completed on 2020-05-13 20:27:56

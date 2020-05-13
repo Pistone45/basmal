@@ -127,6 +127,18 @@ class User{
 	} //end adding users
 
 
+	public function getUser(){
+		$getUser = $this->dbCon->Prepare("SELECT * FROM users WHERE verified = 0");
+		$getUser->execute();
+		
+		if($getUser->rowCount()>0){
+			$rows = $getUser->fetchAll();
+			return $rows;
+		}
+	} //end of getting news
+
+
+
 
 	  public function addReporter($username,$fname,$lname,$password,$phone,$media_house,$email){
 		//check if the user is already in the system before adding new user
@@ -278,6 +290,22 @@ class User{
 			$get->execute();
 
 			$_SESSION['role-updated'] = true;
+			
+		}catch(PDOException $e){
+			echo $e->getMessage();
+		}
+	}
+
+
+	// update role 
+	public function authorizeUser($id){
+		try{
+			$get = $this->dbCon->prepare("UPDATE users SET verified = '1' WHERE username = '$id'");
+		
+			$get->bindParam(1, $id);
+			$get->execute();
+
+			$_SESSION['user-authorized'] = true;
 			
 		}catch(PDOException $e){
 			echo $e->getMessage();
