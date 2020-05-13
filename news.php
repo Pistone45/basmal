@@ -39,6 +39,7 @@ include_once("functions/functions.php");
     <!-- about part start-->
  <br>
  <h1 align="center">News</h1>
+ <p align="center">Read the news below or click <a href="register.php"><button class="btn btn-outline-success">here</button></a> to register as a Reporter/Journalist</p>
  <br>
 
 <div class="row container-fluid">

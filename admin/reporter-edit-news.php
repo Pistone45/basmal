@@ -103,9 +103,9 @@ if(isset($_POST['submit'])){
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-    <?php include_once("header.html"); ?>
+    <?php include_once("reporter-header.html"); ?>
   <!-- Left side column. contains the logo and sidebar -->
-   <?php include_once('sidebar.html'); ?>
+   <?php include_once('reporter-sidebar.html'); ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -116,8 +116,8 @@ if(isset($_POST['submit'])){
        
       </h1>
       <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="edit-news.php">Edit News</a></li>
+        <li><a href="reporter.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="reporter-edit-news.php">Edit News</a></li>
        
       </ol>
     </section>
@@ -125,7 +125,7 @@ if(isset($_POST['submit'])){
     <!-- Main content -->
     <section class="content">
 	<!-- form start -->
-            <form role="form" action="edit-news.php" method="POST" enctype="multipart/form-data">
+            <form role="form" action="reporter-edit-news.php" method="POST" enctype="multipart/form-data">
 			<?php
                             if(isset($_SESSION["news-edited"]) && $_SESSION["news-edited"]==true)
                             {
@@ -134,7 +134,7 @@ if(isset($_POST['submit'])){
                                 echo "<strong>Success! </strong>"; echo "You have successfully edited the news";
                                 unset($_SESSION["news-edited"]);
                                 echo "</div>";
-								 header('Refresh: 5; URL= view-news.php');
+								 header('Refresh: 5; URL= reporter.php');
                             }
 							?>
       <div class="row box box-primary">

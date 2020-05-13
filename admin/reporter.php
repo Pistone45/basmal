@@ -4,69 +4,17 @@ if(!isset($_SESSION['user'])){
 		header("Location: login.php");
 		exit;
 	}
+$getReporterNews = new News();
+$news = $getReporterNews->getReporterNews();
+
 if(isset($_GET['id'])){
 	$id = $_GET['id'];
-$getSpecificNews = new News();
-$news = $getSpecificNews->getSpecificNews($id);	
-}
-
-
-if(isset($_POST['submit'])){
 	
-	//validate ID attachment
-	//validate  file
-	 if(isset($_FILES['news_image'])){
-      $errors= array();
-      $file_name = $_FILES['news_image']['name'];
-      $file_size =$_FILES['news_image']['size'];
-      $file_tmp =$_FILES['news_image']['tmp_name'];
-      $file_type=$_FILES['news_image']['type'];
-	  $dot = ".";
-
-     // $file_ext=strtolower(end(explode($dot,$file_name)));
-
-	  $bannerpath = "../images/";
-	  $bannerpath = $bannerpath . basename($file_name);
-	   $file_ext = pathinfo($bannerpath,PATHINFO_EXTENSION);
-      $expensions= array("JPG", "jpg","PNG","png","GIF","gif");
-
-      if(in_array($file_ext,$expensions)=== false){
-         $errors[]="This file extension is not allowed.";
-      }
-
-      if($file_size > 3007152){
-
-         $errors[]='File size must be not more than 3 MB';
-
-      }
-
-      if(empty($errors)==true){
-		move_uploaded_file($file_tmp, $bannerpath);
-
-      }else{
-		   $errors[]='Error Uploading file';
-
-         //print_r($errors);
-      }
-	 }
-
-	  $title = $_POST['title'];
-	 $news = $_POST['content'];
-	   $news_id = $_POST['id'];
-	 if(strlen($bannerpath) ==10){
-		 $bannerpath = $_POST['url'];
-		 
-	 }
+	$deleteNews = new News();
+	$deleteNews->deleteNews($id);
 	
-
-     $editNews = new News();
-
-	 $editNews->editNews($bannerpath,$title,$news,$news_id);
-
-	//refresh page
-	$id = $news_id;
-	$getSpecificNews = new News();
-	$news = $getSpecificNews->getSpecificNews($id);	
+	$getReporterNews = new News();
+	$news = $getReporterNews->getReporterNews();
 }
 
 ?>
@@ -75,7 +23,7 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Edit News | Basmal</title>
+  <title>View News | Basmal</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -103,21 +51,21 @@ if(isset($_POST['submit'])){
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-    <?php include_once("header.html"); ?>
+    <?php include_once("reporter-header.html"); ?>
   <!-- Left side column. contains the logo and sidebar -->
-   <?php include_once('sidebar.html'); ?>
+   <?php include_once('reporter-sidebar.html'); ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Edit News
+        View News
        
       </h1>
       <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="edit-news.php">Edit News</a></li>
+        <li><a href="reporter.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="reporter.php">View News</a></li>
        
       </ol>
     </section>
@@ -125,67 +73,51 @@ if(isset($_POST['submit'])){
     <!-- Main content -->
     <section class="content">
 	<!-- form start -->
-            <form role="form" action="edit-news.php" method="POST" enctype="multipart/form-data">
-			<?php
-                            if(isset($_SESSION["news-edited"]) && $_SESSION["news-edited"]==true)
-                            {
-                                echo "<div class='alert alert-success'>";
-                                echo "<button type='button' class='close' data-dismiss='alert'>*</button>";
-                                echo "<strong>Success! </strong>"; echo "You have successfully edited the news";
-                                unset($_SESSION["news-edited"]);
-                                echo "</div>";
-								 header('Refresh: 5; URL= view-news.php');
-                            }
-							?>
+            
       <div class="row box box-primary">
         <!-- left column -->
-        <div class="col-md-6">
+        <div class="col-md-12">
           <!-- general form elements -->
               <div class="box-body">
-                <div class="form-group">
-                  <label for="fatherName">Title</label>
-                  <input class="form-control" name="title" value="<?php echo $news['title'];   ?>" required>
-                </div>
-				<input type="hidden" value="<?php echo $news['news_image'];   ?>" name="url" />
-					<input type="hidden" value="<?php echo $news['id'];   ?>" name="id" />
-                     <div class="">
-                     <img src="<?php echo $news['news_image'];   ?>" class="img img-thumbnail" width="50px;"><br/>
-					 
-				<div class="form-group">
-                  <label for="fatherMiddleName">News Image</label>
-                  <input type="file" class="" name="news_image" >
-                </div>
+             <table class="table">
+			 <?php
+						if(isset($news) && count($news)>0){
+							foreach($news as $new){ ?>
+							<tr>
+								<td><img src="<?php echo $new['news_image']; ?>" height="70px" width="70px;" /></td>
+								<td><?php echo $new['title']; ?></td>
+								<td><?php echo substr($new['content'],0, 100); ?>....</td>
+								<td><a href="reporter-edit-news.php?id=<?php echo $new['id']; ?>"><i class="fa fa-pencil"></i> Edit News</a></td>
+								<td><a href="reporter.php?id=<?php echo $new['id']; ?>"><i class="fa fa-pencil"></i> Delete News</a></td>
+							</tr>
+							<?php
+							}
+							
+						}else{
+
+              ?>
+          <div class="alert alert-secondary">
+          <p>No News found, Please add some <a href="reporter-news.php"><button style="color: black;" class="btn btn-outline-success">Add News</button></a></p>
+          </div>
+          <?
+
+            } ?>
 				
-				<div class="form-group">
-                  <label for="fatherLastname">News Content</label>
-                  <textarea class="form-control" name="content" required><?php echo $news['content'];   ?></textarea>
-                </div>
-				
+			 </table>
               
                 
               </div>
 			  
-              <!-- /.box-body -->
-			  <div class="box-footer">
-                <button type="submit" name="submit" class="btn btn-primary btn-block">Edit News</button>
-              </div>
-          <!-- /.box -->
+              
 
         
 
         </div>
         <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-            
-		
-			
-			
-        </div>
-        <!--/.col (right) -->
+        
       </div>
       <!-- /.row -->
-	  </form>
+	  
     </section>
     <!-- /.content -->
   </div>

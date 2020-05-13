@@ -28,19 +28,36 @@ class User{
 
 	public function login($username, $password){
 		if(!empty($username) && !empty ($password)) {
-		$login_query = $this->dbCon->prepare("SELECT username, firstname, lastname, phone, email, password FROM users WHERE username=?" );
+		$login_query = $this->dbCon->prepare("SELECT username, firstname, lastname, phone, email, password, roles_id, verified FROM users WHERE username=?" );
 				$login_query->bindParam(1, $username);
 				$login_query->execute();
 				
 				if($login_query->rowCount() ==1){
 				$row = $login_query -> fetch();
 				$hash_pass =trim($row['password']);
+				$roles_id = $row['roles_id'];
+				$verified = $row['verified'];
+
 				//verify password
 				if (password_verify($password, $hash_pass)) {
-					// Success!
-					$_SESSION['user'] = $row;
+
+					if ($roles_id == 1 && $verified == 1) {
+						$_SESSION['user'] = $row;
+						
+						header("Location: index.php");
+						//die();
+					} elseif ($roles_id == 3 && $verified == 1) {
+						$_SESSION['user'] = $row;
+						
+						header("Location: reporter.php");
+					}else{
+						$_SESSION['invalidUser']=true;
+					}
 					
-					header("Location: index.php");
+					// Success!
+					//$_SESSION['user'] = $row;
+					
+					//header("Location: index.php");
 					//die();
 				}
 				else {
@@ -101,6 +118,40 @@ class User{
 						  ));
 						  
 						  $_SESSION['user-added']=true;
+					
+		}
+	
+	
+			
+
+	} //end adding users
+
+
+
+	  public function addReporter($username,$fname,$lname,$password,$phone,$media_house,$email){
+		//check if the user is already in the system before adding new user
+		$checkUser = $this->dbCon->prepare("SELECT username from users where username=?" );
+		$checkUser->bindValue(1, $username);
+		$checkUser->execute();
+		if($checkUser->rowCount() ==1){
+			//user already in the system
+			$_SESSION['user_found']= true;
+		}else{
+			//add user in the system
+			$role = 3; //Reporter
+				$addReporter = $this->dbCon->prepare("INSERT INTO users (username, password, firstname,lastname,email,phone,media_house,roles_id) VALUES (:username, :password, :fname,:lname,:email,:phone, :media_house,:role_id)" );
+				$addReporter->execute(array(
+						  ':username'=>($username),
+						  ':password'=>($password),
+						  ':fname'=>($fname),
+						  ':lname'=>($lname),
+						  ':email'=>($email),
+						  ':phone'=>($phone),
+						  ':media_house'=>($media_house),
+						  ':role_id'=>($role),
+						  ));
+						  
+						  $_SESSION['reporter-added']=true;
 					
 		}
 	
@@ -1721,6 +1772,18 @@ class News{
 			return $rows;
 		}
 	} //end of getting news
+
+	public function getReporterNews(){
+		$added_by = $_SESSION['user']['username'];
+		$getReporterNews = $this->dbCon->Prepare("SELECT id,title, content, news_image, date_added FROM news WHERE added_by = '$added_by' ORDER BY date_added DESC");
+		$getReporterNews->execute();
+		
+		if($getReporterNews->rowCount()>0){
+			$rows = $getReporterNews->fetchAll();
+			return $rows;
+		}
+	} //end of getting news
+
 
 
 	public function getHomeNews(){
