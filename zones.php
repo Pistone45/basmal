@@ -129,7 +129,7 @@ $title = $_GET['id'];
                         <h4><?php echo $secretariat['position']?></h4>
                         <p><?php echo substr($secretariat['description'],0, 200)?>.......</p>
                         <br>
-                        <a href="secretariat-details?id=<?php echo $secretariat['id']?>"><button class="btn btn-info">View Profile</button></a>
+                        <a href="zone-secretariat-details?id=<?php echo $secretariat['id']?>"><button class="btn btn-info">View Profile</button></a>
                     </div>
                 </div>
       </div>
