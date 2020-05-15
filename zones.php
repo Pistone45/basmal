@@ -1,7 +1,6 @@
 <?php
 include_once("functions/functions.php");
-    $getSecretariat = new Secretariat();
-    $secretariats = $getSecretariat->getSecretariat();
+
 
 if (isset($_GET['id'])) {
 
@@ -11,6 +10,9 @@ if (isset($_GET['id'])) {
 		$status =0; //game not started or no scores
 		$getScores = new Game();
 		$results = $getScores->getScores($season,$status);
+
+	$getZonesSecretariat = new Secretariat();
+    $secretariats = $getZonesSecretariat->getZonesSecretariat($id);
 
 } else {
 	echo "No such zone";

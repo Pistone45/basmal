@@ -1913,6 +1913,18 @@ class Secretariat{
 		}
 	} //end of getting Secretariat
 	
+
+	public function getZonesSecretariat($id){
+		$getZonesSecretariat = $this->dbCon->Prepare("SELECT id,fullname, position, description, zones_id, image_url FROM zones_secretariat WHERE zones_id = '$id' ORDER BY rank ASC");
+		$getZonesSecretariat->execute();
+		
+		if($getZonesSecretariat->rowCount()>0){
+			$rows = $getZonesSecretariat->fetchAll();
+			return $rows;
+		}
+	} //end of getting Secretariat
+
+
 	public function getSpecificSecretariat($id){
 		$getSpecificSecretariat = $this->dbCon->Prepare("SELECT id,fullname, position, description, image_url FROM secretariat WHERE id=?");
 		$getSpecificSecretariat->bindParam(1,$id);

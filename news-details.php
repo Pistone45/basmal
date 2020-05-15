@@ -72,7 +72,7 @@ if(isset($_GET['id'])){
                     <p>No News available. Come check later</p>
                     </div>
                     <?
-            }
+             }
 		?>
             
         </div>

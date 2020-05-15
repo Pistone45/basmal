@@ -148,14 +148,20 @@ include_once("functions/functions.php");
 	<?php
 		if(isset($homenews) && count($homenews)>0){
 		foreach($homenews as $home){ ?>
+	<a href="news-details.php?id=<?php echo $home['id']; ?>">
+	<div class="card border-secondary">
+	<div class="card-body text-secondary">
 		<div class="row col-xs-12">
 			<div class="col-md-2 col-xs-12">
 				<img class="img" id="home-title" style="max-width: 100%; max-height: 100%;" src="<?php echo substr($home['news_image'],3);?>">
 			</div>
 			<div class="col-md-10 col-xs-12" id="home-title">
-				<a href="news-details.php?id=<?php echo $home['id']; ?>"><h6><?php echo $home['title']?></h6></a>
+				<h6><?php echo $home['title']?></h6>
 			</div>
-		</div><br>
+		</div>
+		</div>
+	</div></a>
+	<br>
 			<?php
 			
 		}
@@ -184,7 +190,7 @@ include_once("functions/functions.php");
 </div>
 <br>
 <h1 align="center">VIDEOS</h1>   
-<div style="width: 100%;" class="row container-fluid col-xs-12">
+<div style="width: 100%; padding-bottom: 40px;" class="row container-fluid col-xs-12">
 
  <?php
 		if(isset($videos) && count($videos)>0){
