@@ -1912,6 +1912,8 @@ class Secretariat{
 			return $rows;
 		}
 	} //end of getting Secretariat
+
+
 	
 
 	public function getZonesSecretariat($id){
@@ -1935,7 +1937,20 @@ class Secretariat{
 			return $row;
 		}
 	} //end of getting a specific Secretariat
+
 	
+	public function getSpecificZoneSecretariat($id){
+		$getSpecificZoneSecretariat = $this->dbCon->Prepare("SELECT id,fullname, position, description, image_url FROM zones_secretariat WHERE id=?");
+		$getSpecificZoneSecretariat->bindParam(1,$id);
+		$getSpecificZoneSecretariat->execute();
+		
+		if($getSpecificZoneSecretariat->rowCount()>0){
+			$row = $getSpecificZoneSecretariat->fetch();
+			return $row;
+		}
+	} //end of getting a specific Secretariat
+
+
 	public function deleteSecretariat($id){
 		$deleteSecretariat = $this->dbCon->Prepare("DELETE FROM secretariat WHERE id=? ");
 		$deleteSecretariat->bindParam(1,$id);
@@ -1957,6 +1972,23 @@ class Secretariat{
 						  $_SESSION['secretariat-added']=true;
 		
 	}//End of adding Secretariat
+
+
+	public function addZoneSecretariat($fullname,$position, $description, $zones_id, $secretariat_image){
+			
+				$addZoneSecretariat = $this->dbCon->prepare("INSERT INTO zones_secretariat (fullname,position,description,zones_id,image_url) VALUES (:fullname,:position,:description,:zones_id, :image_url)" );
+				$addZoneSecretariat->execute(array(
+						  ':fullname'=>($fullname),
+						  ':position'=>($position),
+						  ':description'=>($description),
+						  ':zones_id'=>($zones_id),
+						  ':image_url'=>($secretariat_image)
+						  ));
+						  
+						  $_SESSION['zone-secretariat-added']=true;
+		
+	}//End of adding Secretariat
+
 	
 	public function editSecretariat($bannerpath,$fullname,$position,$description, $secretariat_id){
 		$editSecretariat = $this->dbCon->PREPARE("UPDATE secretariat SET fullname=?, position=?,description=?, image_url=? WHERE id=?");
@@ -1969,6 +2001,20 @@ class Secretariat{
 		
 		$_SESSION['secretariat-edited'] =true;
 	}//End of Editing Secretariat
+
+
+	public function editZoneSecretariat($bannerpath,$fullname,$position,$description, $secretariat_id){
+		$editZoneSecretariat = $this->dbCon->PREPARE("UPDATE zones_secretariat SET fullname=?, position=?,description=?, image_url=? WHERE id=?");
+		$editZoneSecretariat->bindParam(1,$fullname);
+		$editZoneSecretariat->bindParam(2,$position);
+		$editZoneSecretariat->bindParam(3,$description);
+		$editZoneSecretariat->bindParam(4,$bannerpath);
+		$editZoneSecretariat->bindParam(5,$secretariat_id);
+		$editZoneSecretariat->execute();
+		
+		$_SESSION['secretariat-edited'] =true;
+	}//End of Editing Secretariat
+
 	
 }
 
@@ -2033,17 +2079,6 @@ class Videos{
 		
 	}//End of adding Secretariat
 	
-	public function editSecretariat($bannerpath,$fullname,$position,$description, $secretariat_id){
-		$editSecretariat = $this->dbCon->PREPARE("UPDATE secretariat SET fullname=?, position=?,description=?, image_url=? WHERE id=?");
-		$editSecretariat->bindParam(1,$fullname);
-		$editSecretariat->bindParam(2,$position);
-		$editSecretariat->bindParam(3,$description);
-		$editSecretariat->bindParam(4,$bannerpath);
-		$editSecretariat->bindParam(5,$secretariat_id);
-		$editSecretariat->execute();
-		
-		$_SESSION['secretariat-edited'] =true;
-	}//End of Editing Secretariat
 	
 }
 
