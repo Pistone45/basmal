@@ -45,15 +45,22 @@ include_once("functions/functions.php");
                 <div class="col-md-12 col-lg-12" style="padding-top:20px;">
                     <div class="about_part_text text-justify">
                         <h3>Brief Background</h3>
-                        <p>Basketball Association of Malawi is the only body mandated to run run basketball in Malawi. Basmal is affiiated to FIBA. 
-                        The Southern Zone Basketball League, The Central Zone Basketball League and the Nothern Zone Basketball League are all affiiated to Basmal.</p>
+                        <p>Basketball Association of Malawi(BASMAL) is the governing body of all basketball activities in Malawi and was founded in 1988 
+						with its current headquarters based in Lilongwe, the capital city of Malawi. BASMAL is affiliated to Malawi National Council of
+						Sports, Malawi Olympic Committee and FIBA. Malawi is divided into three zones namely, Southern Zone Basketball(SOZOBAL), 
+						Central Zone Basketball(CEZOBAL) and Northern Zone Basketball(NOZOBAL). BASMAL supervises basketball activities of all 
+						these three zones and organizes national championships and all star games on an annual basis.BASMAL also oversees the 
+						participation of national squads in African and worldwide events.</p>
                     </div>
                 </div>
             </div>
         </div>
+		
     </section>
 <br><br>
+
 <div class="row container-fluid">
+
     <?php
         if(isset($secretariats) && count($secretariats)>0){
         foreach($secretariats as $secretariat){ ?>
